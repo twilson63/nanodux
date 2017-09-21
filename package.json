@@ -1,0 +1,39 @@
+{
+  "name": "nanodux",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {},
+  "license": "MIT",
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "babel-tape-runner": "^2.0.1",
+    "rollup": "^0.50.0",
+    "rollup-plugin-babel": "^3.0.2",
+    "tape": "^4.8.0"
+  },
+  "dependencies": {
+    "nanofp": "^1.1.0"
+  },
+  "scripts": {
+    "build": "NODE_ENV=production rollup -c ./rollup.config.js -n nanodux",
+    "test": "NODE_ENV=test babel-tape-runner test/**/*.js"
+  },
+  "babel": {
+    "env": {
+      "test": {
+        "presets": ["env"]
+      },
+      "production": {
+        "presets": [
+          [
+            "env",
+            {
+              "modules": false
+            }
+          ]
+        ]
+      }
+    }
+  }
+}
