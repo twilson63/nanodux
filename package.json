@@ -2,7 +2,7 @@
   "name": "nanodux",
   "version": "1.0.0",
   "main": "index.js",
-  "repository": {},
+  "repository": "https://github.com/twilson63/nanodux.git",
   "license": "MIT",
   "devDependencies": {
     "babel-cli": "^6.26.0",
