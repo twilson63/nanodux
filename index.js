@@ -1,12 +1,25 @@
-import { reduce, map, equals, merge, keys } from 'nanofp'
+import {
+  reduce,
+  map,
+  equals,
+  merge,
+  keys,
+  assoc,
+  ifElse,
+  always,
+  identity,
+  isNil
+} from 'nanofp'
 
 export const combineReducers = reducers => {
+  const defaultState = reduce((a, v) => assoc(v, null, a), {}, keys(reducers))
   return (state, action) => {
+    state = ifElse(isNil, always(defaultState), identity)(state)
     return merge.apply(
       null,
       map(key => {
         return { [key]: reducers[key](state[key], action) }
-      }, keys(reducers))
+      }, Object.keys(reducers))
     )
   }
 }

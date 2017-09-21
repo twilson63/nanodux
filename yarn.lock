@@ -1274,9 +1274,9 @@ nan@^2.3.0:
   version "2.7.0"
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.7.0.tgz#d95bf721ec877e08db276ed3fc6eb78f9083ad46"
 
-nanofp@^1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/nanofp/-/nanofp-1.1.0.tgz#e39a902989af024fd0b9930f89a4296e2124c46b"
+nanofp@^1.3.0:
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/nanofp/-/nanofp-1.3.0.tgz#a1d6c8d5af36f8413143812758e296903288e129"
 
 node-pre-gyp@^0.6.36:
   version "0.6.37"

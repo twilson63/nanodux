@@ -1,12 +1,26 @@
 (function (global, factory) {
-	typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory(require('nanofp')) :
-	typeof define === 'function' && define.amd ? define(['nanofp'], factory) :
-	(global.nanodux = factory(global.nanofp));
-}(this, (function (nanofp) { 'use strict';
+	typeof exports === 'object' && typeof module !== 'undefined' ? factory(exports, require('nanofp')) :
+	typeof define === 'function' && define.amd ? define(['exports', 'nanofp'], factory) :
+	(factory((global.nanodux = {}),global.nanofp));
+}(this, (function (exports,nanofp) { 'use strict';
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var index = (function (reducer) {
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+var combineReducers = function combineReducers(reducers) {
+  var defaultState = nanofp.reduce(function (a, v) {
+    return nanofp.assoc(v, null, a);
+  }, {}, nanofp.keys(reducers));
+  return function (state, action) {
+    state = nanofp.ifElse(nanofp.isNil, nanofp.always(defaultState), nanofp.identity)(state);
+    return nanofp.merge.apply(null, nanofp.map(function (key) {
+      return _defineProperty({}, key, reducers[key](state[key], action));
+    }, Object.keys(reducers)));
+  };
+};
+
+var createStore = function createStore(reducer) {
   var subscriptions = [];
   var state = null;
 
@@ -32,8 +46,11 @@ var index = (function (reducer) {
       return state;
     }
   };
-});
+};
 
-return index;
+exports.combineReducers = combineReducers;
+exports.createStore = createStore;
+
+Object.defineProperty(exports, '__esModule', { value: true });
 
 })));
