@@ -34,7 +34,6 @@ export const createStore = reducer => {
     },
     dispatch(action) {
       if (equals(typeof action, 'function')) {
-        // TODO: Handle Thunk
         return action(this.dispatch, this.getState)
       }
       const prevState = state
